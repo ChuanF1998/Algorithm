@@ -91,7 +91,6 @@ public:
 	}
 };
 
-
 int main()
 {
 	string_add s;
@@ -99,5 +98,6 @@ int main()
 	while (cin >> str1 >> str2){
 		cout << s.add(str1, str2) << endl;
 	}
+
 	return 0;
 }
