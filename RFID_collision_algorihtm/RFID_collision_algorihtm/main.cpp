@@ -5,8 +5,8 @@ using namespace std;
 
 struct card
 {
-	string code;
-	bool is_correct;
+	string code;  //序列号
+	bool is_correct;  //卡是否能读取（错误卡或已读的卡不能读）
 	card(){}
 	card(string code)
 		:code(code)
@@ -109,14 +109,8 @@ int main()
 		cin >> str;
 		arr.push_back({ str });
 	}
-	//arr.push_back({ "10110010" });
-	//arr.push_back({ "10100011" });
-	//arr.push_back({ "10110011" });
-	//arr.push_back({ "11100011" });
-	//arr.push_back({ "1111111111" });
 	string s = "11111111";
 	vector<int> conflict_bit;
-	//string s1 = r.first_request(arr, s, conflict_bit);
 	r.first_request(arr, s, conflict_bit);
 	r.find_card(arr, conflict_bit, s);
 	return 0;
