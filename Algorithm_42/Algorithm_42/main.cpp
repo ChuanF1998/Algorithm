@@ -18,39 +18,51 @@
 #include <vector>
 using namespace std;
 
-class Solution
-{
+
+class Solution {
 public:
-	int get_num(vector<int> arr)
-	{
-		int onehalf_num = arr[0];
-		int count = 1;
-		for (size_t i = 1; i < arr.size(); ++i) {
-			if (onehalf_num = arr[i]) {
-				count++;
+	int MoreThanHalfNum_Solution(vector<int> numbers) {
+		int theNum = 0;  //保存当前数
+		int minus_count = 0;  //次数
+		if (numbers.empty()) {
+			return theNum;
+		}
+		theNum = numbers[0]; 
+		minus_count = 1;
+		for (int i = 1; i < (int)numbers.size(); ++i) {
+			//相等则加1
+			if (numbers[i] == theNum) { 
+				minus_count++;
+				if (minus_count >(int)numbers.size() / 2) {
+					break;
+				}
 			}
 			else {
-				count--;
-				if (count == 0) {
-					onehalf_num = arr[i];
-					count++;
+				//不等则减一
+				minus_count--;
+				//当减为0时，保存当前数，
+				if (minus_count == 0) {
+					theNum = numbers[i];
+					minus_count++;
 				}
 			}
 		}
-		return onehalf_num;
+		//最后应该判断是否成立
+		//如果例：[1,2,4,5,2,2,2]那么必然成立
+		//如果例：[1,2,3,4]这种情况，theNum为4，但是4不成立
+		minus_count = 0;
+		for (int i = 0; i < (int)numbers.size(); ++i) {
+			if (numbers[i] == theNum)
+				minus_count++;
+		}
+		return (minus_count >(int)numbers.size() / 2) ? theNum : 0;
 	}
 };
 
 
 
+
 int main()
 {
-	Solution s;
-	vector<int> arr;
-	int k;
-	while (cin >> k) {
-		arr.push_back(k);
-	}
-	cout << s.get_num(arr) << endl;
 	return 0;
 }
